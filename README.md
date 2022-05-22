@@ -6,7 +6,7 @@ Get ready:
     cd <path to ERDBS>
     mkdir Data parameters retrainedModel
 
-Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
+Download [Data](https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing)
 Extract the Data zip file
 Insert Div2k and benchmark folder to the Data folder created above
 
