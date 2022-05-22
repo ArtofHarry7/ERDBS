@@ -20,11 +20,11 @@ From the file Elites.csv and folder parameters good models can be selected and r
 
 To train or retrain:
     Train a unique sequence of model
-    python main.py -t train -s <sequence>
+    > python main.py -t train -s <sequence>
 
 To test:
     Test a unique sequence of model on a given dataset
-    python main.py -t test -s <sequence> -d <dataset>
+    > python main.py -t test -s <sequence> -d <dataset>
 
 sequence example : ssgcccgscggs
 sequence consists s, g, and c representing SRDB, GRDB and CRDB respectively.
