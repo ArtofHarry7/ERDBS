@@ -3,9 +3,9 @@
 get ready:
     mkdir Data parameters retrainedModel
 
-    download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
-    extract the zip file
-    replace this expracted data with the Data folder we made
+    Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
+    eExtract the zip file
+    Replace this expracted data with the Data folder we made
 
 to evlove:
     python main.py -t evlove
@@ -16,8 +16,8 @@ to train or retrain:
 to test:
     python main.py -t test -s <sequence> -d <dataset>
 
-datasets options : div2k, b100, set5, set14, urban100
+datasets options : [div2k, b100, set5, set14, urban100]
 
 sequence example : ssgcccgscggs
 sequence consists s, g, and c representing SRDB, GRDB and CRDB respectively.
-length of the sequence must be >= 4 and <= 21
+Length of the sequence must be >= 4 and <= 21.
