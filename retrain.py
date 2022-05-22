@@ -1,19 +1,13 @@
-# from random import shuffle
-# import re
-# from select import select
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
-# import numpy as np
-from torch.utils.data import DataLoader, Dataset
-import os
+from torch.utils.data import DataLoader
 from dataLoader import DIV2Kdataset
 import psnr
-# import PIL
 from model import GenerateModel, generateGenome, generatePopulation, getModels
-from utility import device
+from utility import device, paths
 import math
-# import random
+import os
 
 maxPsnr = 0
 
@@ -22,50 +16,19 @@ image_size = 64
 scale_factor = 2
 batch_size = 16
 learning_rate = 0.0001
-# generations = 40
-# populationSize = 16
-# mutationProb = 0.2
-# elitismNumber = 8
 
 nConv = [4, 6, 8]
 nChannel = [16, 24, 32, 48, 64]
 nRecursion = {1, 2, 3, 4}
 
-# pwd = os.getcwd()
-# paths = {
-#     'lr' : {
-#         'check' : os.path.join(pwd, "Data", "DIV2K", "check", "LR"),
-#         'train' : os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_LR_bicubic", "X2"),
-#         'test' : os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_LR_bicubic", "X2"),
-#     },
-#     'hr' : {
-#         'check' : os.path.join(pwd, "Data", "DIV2K", "check", "HR"),
-#         'train' : os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_HR"),
-#         'test' : os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_HR"),
-#     }
-# }
-# train_hr_path = os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_HR")
-# train_lr_path = os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_LR_bicubic", "X2")
-# test_hr_path = os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_HR")
-# test_lr_path = os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_LR_bicubic", "X2")
-# check_hr_path = os.path.join(pwd, "Data", "DIV2K", "check", "HR")
-# check_lr_path = os.path.join(pwd, "Data", "DIV2K", "check", "LR")
-
 train_transform = transforms.Compose([
-    # transforms.Resize((64, 64)),
     transforms.ToTensor(),
     transforms.CenterCrop(image_size),
-    # transforms.RandomHorizontalFlip(),
-    # transforms.RandomRotation(90),
-    # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-    # transforms.Normalize(torch.Tensor(mean), torch.Tensor(std))
 ])
 
 test_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.CenterCrop(image_size*scale_factor),
-    # transforms.Resize((128, 128)),
-    # transforms.Normalize(torch.Tensor(mean), torch.Tensor(std))
 ])
 
 class retrain:
@@ -82,8 +45,6 @@ class retrain:
         train_data = DIV2Kdataset(paths['lr']['train'], paths['hr']['train'], train_transform, test_transform)
         self.train_loader = DataLoader(
             dataset=train_data,
-            # batch_size=batch_size,
-            # shuffle=True,
         )
         self.total_train_sample = len(train_data)
 
@@ -158,7 +119,6 @@ def run(genome):
     print(f'Training model woth block sequence:')
     print(list(genome))
     find = retrain()
-    # genome = ['g', 'g', 's', 's', 'g', 'c', 's', 's', 'c', 'g', 's', 'c']
     _model = GenerateModel(genome, image_size, scale_factor).to(device)
     path = psnr.isIn('parameters', genome)
     if path:
@@ -170,6 +130,3 @@ def run(genome):
     PATH = os.path.join('retrainedModel', f'{round(psnr_.item(), 3)}-{"".join(genome)}.pth')
     torch.save(_model.state_dict(), PATH)
     print('psnr ', round(psnr_.item(), 3), 'after training')
-
-    # PATH = os.path.join('parameter', f'{round(psnr_, 3)}-{"".join(genome)}.pth')
-    # torch.save(_model.state_dict(), PATH)

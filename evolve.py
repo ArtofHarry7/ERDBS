@@ -29,41 +29,14 @@ nRecursion = {1, 2, 3, 4}
 
 blocks = ['s', 'g', 'c']
 
-pwd = os.getcwd()
-paths = {
-    'lr' : {
-        'check' : os.path.join(pwd, "Data", "DIV2K", "check", "LR"),
-        'train' : os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_LR_bicubic", "X2"),
-        'test' : os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_LR_bicubic", "X2"),
-    },
-    'hr' : {
-        'check' : os.path.join(pwd, "Data", "DIV2K", "check", "HR"),
-        'train' : os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_HR"),
-        'test' : os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_HR"),
-    }
-}
-# train_hr_path = os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_HR")
-# train_lr_path = os.path.join(pwd, "Data", "DIV2K", "train", "DIV2K_train_LR_bicubic", "X2")
-# test_hr_path = os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_HR")
-# test_lr_path = os.path.join(pwd, "Data", "DIV2K", "validation", "DIV2K_valid_LR_bicubic", "X2")
-# check_hr_path = os.path.join(pwd, "Data", "DIV2K", "check", "HR")
-# check_lr_path = os.path.join(pwd, "Data", "DIV2K", "check", "LR")
-
 train_transform = transforms.Compose([
-    # transforms.Resize((64, 64)),
     transforms.ToTensor(),
     transforms.CenterCrop(image_size),
-    # transforms.RandomHorizontalFlip(),
-    # transforms.RandomRotation(90),
-    # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-    # transforms.Normalize(torch.Tensor(mean), torch.Tensor(std))
 ])
 
 test_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.CenterCrop(image_size*scale_factor),
-    # transforms.Resize((128, 128)),
-    # transforms.Normalize(torch.Tensor(mean), torch.Tensor(std))
 ])
 
 class GEA:
@@ -84,7 +57,7 @@ class GEA:
                                   'c' : [0 for _ in range(20)]}
 
     def loadData(self):
-        train_data = DIV2Kdataset(paths['lr']['check'], paths['hr']['check'], train_transform, test_transform)
+        train_data = DIV2Kdataset(paths['lr']['train'], paths['hr']['train'], train_transform, test_transform)
         self.train_loader = DataLoader(
             dataset=train_data,
             batch_size=batch_size,
@@ -92,7 +65,7 @@ class GEA:
         )
         self.total_train_sample = len(train_data)
 
-        test_data = DIV2Kdataset(paths['lr']['check'], paths['hr']['check'], train_transform, test_transform)
+        test_data = DIV2Kdataset(paths['lr']['test'], paths['hr']['test'], train_transform, test_transform)
         self.test_loader = DataLoader(
             dataset=test_data,
         )
@@ -115,9 +88,6 @@ class GEA:
                 loss.backward()
                 self.optimizer.step()
 
-                # if (i+1)%1 == 0 and (epoch+1)%10 == 0:
-                #     print(f'epoch [{epoch+1}/{n_epochs}], step [{i+1}/{n_iteration}], loss: {loss.item():.4f}, psnr: {self.PSNR(y, hr)}')
-
             if (epoch+1)%10 == 0:
                 eta *= 2
 
@@ -128,10 +98,8 @@ class GEA:
 
         with torch.no_grad():
             for i, (lr, hr) in enumerate(self.test_loader):
-                # print('.', end='')
                 lr = lr.to(device)
                 hr = hr.to(device)
-                # print(lr.shape)
                 y = _model(lr)
 
                 loss = self.Loss(y, hr)
@@ -139,8 +107,6 @@ class GEA:
                 total += 1
                 avgPsnr += self.PSNR(y, hr)
                 avgLoss += loss
-                # if (i+1)%10 == 0:
-                #     print(f'step [{i+1}/{self.total_test_sample}], loss: {loss.item():.4f}, psnr: {self.PSNR(y, hr)}')
 
             avgLoss /= total
             avgPsnr /= total
