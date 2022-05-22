@@ -3,8 +3,8 @@
 Get ready: 
     Extract the files in a folder ERDBS
 
-> cd <path to ERDBS>
-> mkdir Data parameters retrainedModel
+    cd <path to ERDBS>
+    mkdir Data parameters retrainedModel
 
 Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
 Extract the Data zip file
