@@ -1,6 +1,11 @@
 # Efficient Redidual Dense Block Search
 
-mkdir Data parameters retrainedModel
+get ready:
+    mkdir Data parameters retrainedModel
+
+    download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
+    extract the zip file
+    replace this expracted data with the Data folder we made
 
 to evlove:
     python main.py -t evlove
