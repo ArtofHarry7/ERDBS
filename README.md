@@ -28,7 +28,7 @@
 
         python main.py -t test -s <sequence> -d <dataset>
 
-        **Warniing : a model is only tested when it is alreasy trained else will return an error.**
+    **Warniing : a model is only tested when it is alreasy trained else will return an error.**
 
     - sequence example : ssgcccgscggs
     - sequence consists s, g, and c representing SRDB, GRDB and CRDB respectively.
