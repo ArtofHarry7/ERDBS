@@ -1,23 +1,27 @@
 # Efficient Redidual Dense Block Search
 
-get ready:
-    mkdir Data parameters retrainedModel
+Get ready:
+    Extract the files in a folder ERDBS
+
+    Then:
+        cd <path to ERDBS>
+        mkdir Data parameters retrainedModel
 
     Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
-    Extract the zip file
+    Extract the Data zip file
     Insert Div2k and benchmark folder to the Data folder created above
 
-to evlove:
+To evlove:
     python main.py -t evlove
 
     Some of the best models will be saved in parameters folder during evolution.
     Final Elites will be saved in a file named Elites.csv
     From the file Elites.csv and folder parameters good models can be selected and retrained
 
-to train or retrain:
+To train or retrain:
     python main.py -t train -s <sequence>
 
-to test:
+To test:
     python main.py -t test -s <sequence> -d <dataset>
 
 datasets options : ['div2k', 'b100', 'set5', 'set14', 'urban100']
