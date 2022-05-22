@@ -10,17 +10,17 @@ Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4f
 Extract the Data zip file
 Insert Div2k and benchmark folder to the Data folder created above
 
-To evlove
+To evlove: Guided Evaluation Method
     python main.py -t evlove
 
 Some of the best models will be saved in parameters folder during evolution.
 Final Elites will be saved in a file named Elites.csv
 From the file Elites.csv and folder parameters good models can be selected and retrained
 
-To train or retrain
+To train or retrain: Train a unique sequence of model
     python main.py -t train -s <sequence>
 
-To test
+To test: Test a unique sequence of model on a given dataset
     python main.py -t test -s <sequence> -d <dataset>
 
 sequence example : ssgcccgscggs
