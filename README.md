@@ -1,15 +1,14 @@
 # Efficient Redidual Dense Block Search
 
-Get ready:
+Get ready: 
     Extract the files in a folder ERDBS
 
-    Then:
-        cd <path to ERDBS>
-        mkdir Data parameters retrainedModel
+    cd <path to ERDBS>
+    mkdir Data parameters retrainedModel
 
-    Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
-    Extract the Data zip file
-    Insert Div2k and benchmark folder to the Data folder created above
+Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
+Extract the Data zip file
+Insert Div2k and benchmark folder to the Data folder created above
 
 To evlove:
     python main.py -t evlove
