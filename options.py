@@ -1,5 +1,4 @@
 import argparse
-import template
 
 parser = argparse.ArgumentParser(description ='Efficient Residual Dense Block Search for Image Super-Resolution')
 
@@ -22,4 +21,3 @@ parser.add_argument("-d", "--dataset",
 
 
 args = parser.parse_args()
-# template.set_template(args)
