@@ -24,8 +24,8 @@ To train or retrain:
 To test:
     python main.py -t test -s <sequence> -d <dataset>
 
-datasets options : ['div2k', 'b100', 'set5', 'set14', 'urban100']
-
 sequence example : ssgcccgscggs
 sequence consists s, g, and c representing SRDB, GRDB and CRDB respectively.
 Length of the sequence must be >= 4 and <= 21.
+
+datasets options : ['div2k', 'b100', 'set5', 'set14', 'urban100']
