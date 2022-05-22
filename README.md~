@@ -17,7 +17,7 @@ to test:
     python main.py -t test -s <sequence> -d <dataset>
 
 datasets options : div2k, b100, set5, set14, urban100
-sequence example : ssgcccgscggs
 
+sequence example : ssgcccgscggs
 sequence consists s, g, and c representing SRDB, GRDB and CRDB respectively.
 length of the sequence must be >= 4 and <= 21
