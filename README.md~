@@ -4,11 +4,15 @@ get ready:
     mkdir Data parameters retrainedModel
 
     Download Data from https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing
-    eExtract the zip file
+    Extract the zip file
     Replace this expracted data with the Data folder we made
 
 to evlove:
     python main.py -t evlove
+
+    Some of the best models will be saved in parameters folder during evolution.
+    Final Elites will be saved in a file named Elites.csv
+    From the file Elites.csv and folder parameters good models can be selected and retrained
 
 to train or retrain:
     python main.py -t train -s <sequence>

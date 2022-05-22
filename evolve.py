@@ -9,6 +9,7 @@ from model import GenerateModel, generatePopulation
 from utility import *
 import math
 import random
+import csv
 
 maxPsnr = psnr.updateMaxPsnr()
 
@@ -210,3 +211,14 @@ def run():
     print(f'After evolution over {generations} generations of population of size {populationSize} the Elites are:')
     for e in final_elites:
         print(e)
+
+    try:
+        field_names = ['genome', 'fitness']
+
+        with open('Elites.csv', 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=field_names)
+            writer.writeheader()
+            writer.writerows(final_elites)
+    
+    except:
+        print('Something went wrong Elites are not saved better you notedown')
