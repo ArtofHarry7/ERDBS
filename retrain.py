@@ -11,7 +11,7 @@ import os
 
 maxPsnr = 0
 
-n_epochs = 100
+n_epochs = 1000
 image_size = 64
 scale_factor = 2
 batch_size = 16
