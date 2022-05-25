@@ -4,6 +4,8 @@
     Extract the files in a folder ERDBS
 
         cd  <path to ERDBS>
+        
+        
         mkdir Data parameters retrainedModel
 
     - Download [Data](https://drive.google.com/drive/folders/1hd-C5iM11eHGcp6c-fY4fZC9-BoAHvEP?usp=sharing).
@@ -12,7 +14,7 @@
 
 - To evlove:
 
-        python main.py -t evlove
+        python main.py -t evolve
 
     - Some of the best models will be saved in parameters folder during the whole process of evolution.
     - Final Elites will be saved in a file named Elites.csv.
