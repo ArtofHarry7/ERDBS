@@ -59,6 +59,9 @@ class TEST:
             for i, (lr, hr) in enumerate(self.test_loader):
                 lr = lr.to(device)
                 hr = hr.to(device)
+                if lr.shape[1] != 3:
+                    print('BnW photo found')
+                    continue
                 y = _model(lr)
 
                 loss = self.Loss(y, hr)
